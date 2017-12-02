@@ -1,4 +1,7 @@
 data/microsoft/
 data/text/
 data/database.db
+data/database.db-journal
 sci_bot.py
+*.pyc
+
