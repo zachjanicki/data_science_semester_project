@@ -9,7 +9,7 @@ from console_colors import console_colors as cc
 
 # Global vars ---------------------
 DEBUG = False
-DEBUG_VERBOSE = False
+DEBUG_VERBOSE = True
 
 # ------------------ Papers table ---------------------
 def paper_already_inserted(db, paper_id):
@@ -127,12 +127,22 @@ def populate_papers(db):
 
 
 # ------------------ Authors table ---------------------
+def author_already_inserted(db, author_id):
+	command = 'SELECT 1 FROM Authors WHERE author_id = \'' + author_id + '\' LIMIT 1'
+	for row in db.execute(command):
+		if row[0] is 1:
+			return True
+		else:
+			return False
+
 def insert_author(db, author_id, author_name, paper_id):
+	if author_already_inserted(db, author_id):
+		return False
 	command = 'INSERT INTO Authors VALUES (\"' + author_id + '\",\"' + author_name + '\",\"' + paper_id + '\")'
 	db.execute(command)
 	if DEBUG:
 		print "Inserted author \t" + author_name + "\t" + author_id
-
+	return True
 
 def populate_authors(db):
 	counter = 0
@@ -142,17 +152,29 @@ def populate_authors(db):
 			author_id = content[0]
 			author_name = content[1]
 			paper_id = "0"
-			insert_author(db, author_id, author_name, paper_id)
-			counter += 1
+			return_status = insert_author(db, author_id, author_name, paper_id)
+			if return_status:
+				counter += 1
 	return counter
 
 
 # ------------------ Keywords table ---------------------
+def keyword_already_inserted(db, keyword):
+	command = 'SELECT 1 FROM Keywords WHERE keyword = \'' + keyword + '\' LIMIT 1'
+	for row in db.execute(command):
+		if row[0] is 1:
+			return True
+		else:
+			return False
+
 def insert_keyword(db, keyword, paper_id, confidence):
+	if keyword_already_inserted(db, keyword):
+		return False
 	command = 'INSERT INTO Keywords VALUES (\"' + keyword + '\",\"' + paper_id + '\",\"' + confidence + '\")'
 	db.execute(command)
 	if DEBUG:
 		print "Inserted keyword \t" + keyword
+	return True
 	
 		
 def populate_keywords(db):
@@ -164,8 +186,9 @@ def populate_keywords(db):
 			keyword = content[1]
 			# keyword_id = content[2] 	# not recommended to use
 			confidence = "0" 			# not sure what confidence refers to
-			insert_keyword(db, keyword, paper_id, confidence)
-			counter += 1
+			return_status = insert_keyword(db, keyword, paper_id, confidence)
+			if return_status:
+				counter += 1
 	return counter
 	
 	
@@ -196,17 +219,17 @@ if __name__ == "__main__":
 	
 	# Populate Papers table
 	index_txt_counter, papers_txt_counter, insertion_counter = populate_papers(c)
-	print str(insertion_counter) + "\t papers inserted"
-	print str(index_txt_counter) + "\t papers in index"
+	print cc.OKGREEN + str(insertion_counter) + "\t papers inserted" + cc.ENDC
+	print str(index_txt_counter) + "\t papers in index.txt"
 	print str(papers_txt_counter) + "\t papers in Papers.txt"
 	
 	# Populate Authors table
 	authors_inserted = populate_authors(c)
-	print str(authors_inserted) + "\t authors inserted"
+	print cc.OKGREEN + str(authors_inserted) + "\t authors inserted" + cc.ENDC
 	
 	# Populate Keywords table
 	keywords_inserted = populate_keywords(c)
-	print str(keywords_inserted) + "\t keywords inserted"
+	print cc.OKGREEN + str(keywords_inserted) + "\t keywords inserted" + cc.ENDC
 	
 	conn.commit()
 	conn.close()
