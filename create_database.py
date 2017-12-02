@@ -3,9 +3,11 @@
 # Data Science - Final Project
 # Zach Janicki and Michael McRoskey
 
-DEBUG = False
+# Imports -------------------------
+import sys, sqlite3, string, re
 
-import sqlite3
+# Global vars ---------------------
+DEBUG = True
 
 # ------------------ Papers table ---------------------
 def insert_paper(db, paper_id, title, year, paper_text):
@@ -26,16 +28,58 @@ def update_paper(db, paper_id, field, value):
 	if DEBUG:
 		print "Updated paper \t" + paper_id + "\t with " + field + " = " + value
 		
-def populate_papers():
-	pass
-#	with open('data/microsoft/PaperKeywords.txt') as f:
-#		for line in f:
-#			content = line.split("\t")
-#			paper_id = content[0]
-#			keyword = content[1]
-#			# keyword_id = content[2] 	# not recommended to use
-#			confidence = "0" 			# not sure what confidence refers to
-#			insert_keyword(c, keyword, paper_id, confidence)
+def extract_content(path):
+	full_path = 'data/text/' + path
+	with open(full_path) as f:
+		return f.read().replace('\n', ' ')
+
+def clean(string):
+	string = string.lower()
+	chars_to_remove = ['\"', '\'', '(', ')']
+	string = re.sub('[' + re.escape(''.join(chars_to_remove)) + ']', '', string)
+    # return string.encode('ascii', errors='ignore').decode()
+	return string
+
+def populate_papers(db):
+	
+	# Create preliminary dictionary with paper_id, file paths, and titles
+	papers = {}
+	with open('data/microsoft/index.txt') as f:
+		for line in f:
+			line = line.strip("\n")
+			content = line.split("\t")
+			folder_name = content[0]
+			file_name = content[1]
+			paper_id = content[2]
+			title = content[3]
+			path = folder_name + "/" + file_name + ".txt"
+			papers[paper_id] = (path, title)
+	
+	# Gather more information from larger papers file and compare
+	with open('data/microsoft/Papers.txt') as f:
+		for line in f:
+			line = line.strip("\n")
+			content = line.split("\t")
+			paper_id = content[0]
+			title_case = content[1]
+			title = content[2]
+			year = content[3]
+			# date_of_proceeding = content[4]	# not recommended to use
+			# doi = content[5]					# not recommended to use
+			# conf_full_name = content[6]		# not recommended to use
+			conf = content[7]
+			# N/A = content[8]
+			conf_id = content[9]
+			# N/A = content[10]
+						
+			if paper_id in papers:
+				raw_text = extract_content(papers[paper_id][0])
+				clean_text = clean(raw_text)
+				insert_paper(db, paper_id, title, year, clean_text)
+			else:
+				# paper_id in Papers.txt does not exis in index.txt
+				pass
+
 
 # ------------------ Authors table ---------------------
 def insert_author(db, author_id, author_name, paper_id):
@@ -44,14 +88,14 @@ def insert_author(db, author_id, author_name, paper_id):
 	if DEBUG:
 		print "Inserted author \t" + author_name + "\t" + author_id
 
-def populate_authors():
+def populate_authors(db):
 	with open('data/microsoft/Authors.txt') as f:
 		for line in f:
 			content = line.split("\t")
 			author_id = content[0]
 			author_name = content[1]
 			paper_id = "0"
-			insert_author(c, author_id, author_name, paper_id)
+			insert_author(db, author_id, author_name, paper_id)
 
 
 # ------------------ Keywords table ---------------------
@@ -61,7 +105,7 @@ def insert_keyword(db, keyword, paper_id, confidence):
 	if DEBUG:
 		print "Inserted keyword \t" + keyword
 		
-def populate_keywords():
+def populate_keywords(db):
 	with open('data/microsoft/PaperKeywords.txt') as f:
 		for line in f:
 			content = line.split("\t")
@@ -69,7 +113,7 @@ def populate_keywords():
 			keyword = content[1]
 			# keyword_id = content[2] 	# not recommended to use
 			confidence = "0" 			# not sure what confidence refers to
-			insert_keyword(c, keyword, paper_id, confidence)
+			insert_keyword(db, keyword, paper_id, confidence)
 	
 def display_table(db, table):
 	print "\n================== " + table + " =================="
@@ -97,13 +141,13 @@ if __name__ == "__main__":
 		print "Already created SQL tables\n"
 	
 	# Populate Papers table
-	populate_papers()
+	populate_papers(c)
 	
 	# Populate Authors table
-	populate_authors()
+	populate_authors(c)
 	
 	# Populate Keywords table
-	populate_keywords()
+	populate_keywords(c)
 		
 	conn.commit()
 	conn.close()
