@@ -5,16 +5,34 @@
 
 # Imports -------------------------
 import sys, sqlite3, string, re
+from console_colors import console_colors as cc
 
 # Global vars ---------------------
 DEBUG = False
 
 # ------------------ Papers table ---------------------
+def paper_already_inserted(db, paper_id):
+	command = 'SELECT EXISTS(SELECT 1 FROM Papers WHERE paper_id = \'' + paper_id + '\' LIMIT 1)'
+	for row in db.execute(command):
+		if row[0] is 0:
+			if DEBUG:
+				print cc.OKGREEN + "Paper " + paper_id + " exists in db" + cc.ENDC
+			return True
+		else:
+			if DEBUG:
+				print cc.FAIL + "Paper " + paper_id + " does not exist in db" + cc.ENDC
+			return False
+	
+
 def insert_paper(db, paper_id, title, year, paper_text):
+	# Don't insert if already exists
+	if paper_already_inserted(db, paper_id):
+		return False
 	command = 'INSERT INTO Papers VALUES (\"' + paper_id + '\",\"' + title + '\",\"' + year + '\",\"' + paper_text + '\")'
 	db.execute(command)
 	if DEBUG:
-		print "Inserted paper \t" + paper_id
+		print "Paper " + paper_id + " inserted"
+	return True
 
 def delete_paper(db, paper_id):
 	command = "DELETE FROM Papers WHERE paper_id=\'" + paper_id + "\';"
@@ -76,13 +94,16 @@ def populate_papers(db):
 			if paper_id in papers:
 				raw_text = extract_content(papers[paper_id][0])
 				clean_text = clean(raw_text)
-				insert_paper(db, paper_id, title, year, clean_text)
+				status = insert_paper(db, paper_id, title, year, clean_text)
 				if DEBUG:
-					print "Success: " + paper_id + " inserted into db"
+					if status:
+						print "      " + paper_id + " inserted"
+					else:
+						print "      " + paper_id + " not inserted"
 			# Failure
 			else:
 				if DEBUG:
-					print "Failure: " + paper_id + " in Papers.txt does not exis in index.txt"
+					print "Paper " + paper_id + " in Papers.txt does not exist in index.txt"
 
 
 # ------------------ Authors table ---------------------
