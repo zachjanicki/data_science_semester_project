@@ -9,12 +9,13 @@ from console_colors import console_colors as cc
 
 # Global vars ---------------------
 DEBUG = False
+DEBUG_VERBOSE = False
 
 # ------------------ Papers table ---------------------
 def paper_already_inserted(db, paper_id):
-	command = 'SELECT EXISTS(SELECT 1 FROM Papers WHERE paper_id = \'' + paper_id + '\' LIMIT 1)'
+	command = 'SELECT 1 FROM Papers WHERE paper_id = \'' + paper_id + '\' LIMIT 1'
 	for row in db.execute(command):
-		if row[0] is 0:
+		if row[0] is 1:
 			if DEBUG:
 				print cc.OKGREEN + "Paper " + paper_id + " exists in db" + cc.ENDC
 			return True
@@ -30,9 +31,8 @@ def insert_paper(db, paper_id, title, year, paper_text):
 		return False
 	command = 'INSERT INTO Papers VALUES (\"' + paper_id + '\",\"' + title + '\",\"' + year + '\",\"' + paper_text + '\")'
 	db.execute(command)
-	if DEBUG:
-		print "Paper " + paper_id + " inserted"
 	return True
+
 
 def delete_paper(db, paper_id):
 	command = "DELETE FROM Papers WHERE paper_id=\'" + paper_id + "\';"
@@ -40,16 +40,19 @@ def delete_paper(db, paper_id):
 	if DEBUG:
 		print "Deleted paper \t" + paper_id
 	
+	
 def update_paper(db, paper_id, field, value):
 	command = "UPDATE Papers SET " + field + " = " + value + " WHERE paper_id = \"" + paper_id + "\""
 	db.execute(command)
 	if DEBUG:
 		print "Updated paper \t" + paper_id + "\t with " + field + " = " + value
 		
+		
 def extract_content(path):
 	full_path = 'data/text/' + path
 	with open(full_path) as f:
 		return f.read().replace('\n', ' ')
+
 
 def clean(string):
 	string = string.lower()
@@ -58,9 +61,15 @@ def clean(string):
     # return string.encode('ascii', errors='ignore').decode()
 	return string
 
+
 def populate_papers(db):
 	
+	index_txt_counter = 0	# number of papers in index.txt
+	papers_txt_counter = 0	# number of papers in Papers.txt
+	insertion_counter = 0	# number of papers inserted into db
+	
 	# Create preliminary dictionary with paper_id, file paths, and titles
+	# from index.txt
 	papers = {}
 	with open('data/microsoft/index.txt') as f:
 		for line in f:
@@ -72,8 +81,11 @@ def populate_papers(db):
 			title = content[3]
 			path = folder_name + "/" + file_name + ".txt"
 			papers[paper_id] = (path, title)
+			index_txt_counter += 1
+			if DEBUG_VERBOSE:
+				print cc.OKBLUE + "Paper " + paper_id + " found in index.txt" + cc.ENDC
 	
-	# Gather more information from larger papers file and compare
+	# Gather more information from larger Papers.txt file and compare
 	with open('data/microsoft/Papers.txt') as f:
 		for line in f:
 			line = line.strip("\n")
@@ -89,21 +101,29 @@ def populate_papers(db):
 			# N/A = content[8]
 			conf_id = content[9]
 			# N/A = content[10]
+			papers_txt_counter += 1
+			
+			if DEBUG_VERBOSE:
+				print cc.OKBLUE + "Paper " + paper_id + " found in Papers.txt" + cc.ENDC
 			
 			# Success
 			if paper_id in papers:
 				raw_text = extract_content(papers[paper_id][0])
 				clean_text = clean(raw_text)
-				status = insert_paper(db, paper_id, title, year, clean_text)
-				if DEBUG:
-					if status:
-						print "      " + paper_id + " inserted"
-					else:
-						print "      " + paper_id + " not inserted"
+				return_status = insert_paper(db, paper_id, title, year, clean_text)
+				if return_status:
+					insertion_counter += 1
+					if DEBUG:
+						print cc.OKBLUE +  "Paper " + paper_id + " inserted" + cc.ENDC
+				else:
+					if DEBUG:
+						print cc.WARNING + "Paper " + paper_id + " not inserted" + cc.ENDC
 			# Failure
 			else:
 				if DEBUG:
-					print "Paper " + paper_id + " in Papers.txt does not exist in index.txt"
+					print cc.FAIL + "Paper " + paper_id + " in Papers.txt does not exist in index.txt" + cc.ENDC
+	
+	return index_txt_counter, papers_txt_counter, insertion_counter
 
 
 # ------------------ Authors table ---------------------
@@ -113,7 +133,9 @@ def insert_author(db, author_id, author_name, paper_id):
 	if DEBUG:
 		print "Inserted author \t" + author_name + "\t" + author_id
 
+
 def populate_authors(db):
+	counter = 0
 	with open('data/microsoft/Authors.txt') as f:
 		for line in f:
 			content = line.split("\t")
@@ -121,6 +143,8 @@ def populate_authors(db):
 			author_name = content[1]
 			paper_id = "0"
 			insert_author(db, author_id, author_name, paper_id)
+			counter += 1
+	return counter
 
 
 # ------------------ Keywords table ---------------------
@@ -129,8 +153,10 @@ def insert_keyword(db, keyword, paper_id, confidence):
 	db.execute(command)
 	if DEBUG:
 		print "Inserted keyword \t" + keyword
+	
 		
 def populate_keywords(db):
+	counter = 0
 	with open('data/microsoft/PaperKeywords.txt') as f:
 		for line in f:
 			content = line.split("\t")
@@ -139,6 +165,9 @@ def populate_keywords(db):
 			# keyword_id = content[2] 	# not recommended to use
 			confidence = "0" 			# not sure what confidence refers to
 			insert_keyword(db, keyword, paper_id, confidence)
+			counter += 1
+	return counter
+	
 	
 def display_table(db, table):
 	print "\n================== " + table + " =================="
@@ -166,13 +195,18 @@ if __name__ == "__main__":
 		print "Already created SQL tables\n"
 	
 	# Populate Papers table
-	populate_papers(c)
+	index_txt_counter, papers_txt_counter, insertion_counter = populate_papers(c)
+	print str(insertion_counter) + "\t papers inserted"
+	print str(index_txt_counter) + "\t papers in index"
+	print str(papers_txt_counter) + "\t papers in Papers.txt"
 	
 	# Populate Authors table
-	populate_authors(c)
+	authors_inserted = populate_authors(c)
+	print str(authors_inserted) + "\t authors inserted"
 	
 	# Populate Keywords table
-	populate_keywords(c)
-		
+	keywords_inserted = populate_keywords(c)
+	print str(keywords_inserted) + "\t keywords inserted"
+	
 	conn.commit()
 	conn.close()
