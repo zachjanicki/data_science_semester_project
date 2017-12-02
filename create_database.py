@@ -7,7 +7,7 @@
 import sys, sqlite3, string, re
 
 # Global vars ---------------------
-DEBUG = True
+DEBUG = False
 
 # ------------------ Papers table ---------------------
 def insert_paper(db, paper_id, title, year, paper_text):
@@ -35,7 +35,7 @@ def extract_content(path):
 
 def clean(string):
 	string = string.lower()
-	chars_to_remove = ['\"', '\'', '(', ')']
+	chars_to_remove = ['\"', '\'', '(', ')', '\x00']
 	string = re.sub('[' + re.escape(''.join(chars_to_remove)) + ']', '', string)
     # return string.encode('ascii', errors='ignore').decode()
 	return string
@@ -71,14 +71,18 @@ def populate_papers(db):
 			# N/A = content[8]
 			conf_id = content[9]
 			# N/A = content[10]
-						
+			
+			# Success
 			if paper_id in papers:
 				raw_text = extract_content(papers[paper_id][0])
 				clean_text = clean(raw_text)
 				insert_paper(db, paper_id, title, year, clean_text)
+				if DEBUG:
+					print "Success: " + paper_id + " inserted into db"
+			# Failure
 			else:
-				# paper_id in Papers.txt does not exis in index.txt
-				pass
+				if DEBUG:
+					print "Failure: " + paper_id + " in Papers.txt does not exis in index.txt"
 
 
 # ------------------ Authors table ---------------------
