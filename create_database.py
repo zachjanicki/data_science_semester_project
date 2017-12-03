@@ -138,7 +138,7 @@ def author_already_inserted(db, author_id):
 def insert_author(db, author_id, author_name, paper_id):
 	if author_already_inserted(db, author_id):
 		return False
-	command = 'INSERT INTO Authors VALUES (\"' + author_id + '\",\"' + author_name + '\",\"' + paper_id + '\")'
+	command = 'INSERT INTO Authors VALUES (\"' + author_id + '\",\"' + author_name + '\"'
 	db.execute(command)
 	if DEBUG:
 		print "Inserted author \t" + author_name + "\t" + author_id
@@ -151,8 +151,7 @@ def populate_authors(db):
 			content = line.split("\t")
 			author_id = content[0]
 			author_name = content[1]
-			paper_id = "0"
-			return_status = insert_author(db, author_id, author_name, paper_id)
+			return_status = insert_author(db, author_id, author_name)
 			if return_status:
 				counter += 1
 	return counter
@@ -190,6 +189,10 @@ def populate_keywords(db):
 			if return_status:
 				counter += 1
 	return counter
+
+# ---------------- Paper Authors table ---------------------
+################### this needs to be completed ###################
+#def affiliation_already_inserted(db)
 	
 	
 def display_table(db, table):
@@ -200,6 +203,63 @@ def display_table(db, table):
 		for item in row:
 			string += item + "\t"
 		print string
+
+
+def clean_affiliations(db):
+	authors_f = open('data/microsoft/Authors.txt')
+	affils_f = open('data/microsoft/PaperAuthorAffiliations.txt')
+	cleaned_affils_f = open('data/microsoft/AffilsCleaned.txt', 'w')
+	command = 'SELECT paper_id FROM papers'
+	paper_ids = []
+	aff_number = 0
+	for item in db.execute(command):
+		paper_ids.append(str(item[0]))
+	print len(paper_ids)
+	for line in affils_f:
+		print 'Checking Affiliation file line number {}'.format(aff_number)
+		author_affiliation = line.split('\t')
+		aff_pid = str(author_affiliation[0])
+		aid = str(author_affiliation[1])
+		fid = str(author_affiliation[2])
+		# aff_org = str(author_affiliation[3]) not recommended to use
+		aff = str(author_affiliation[4])
+		sid = str(author_affiliation[5])
+
+		for pid in paper_ids:
+			#print pid
+			#print '==========='
+			#print aff_pid, aid, pid
+			if pid == aff_pid:
+				cleaned_affils_f.write('{}\t{}\t{}\t{}\t{}'.format(aff_pid, aid, fid, aff, sid))
+		aff_number += 1
+	authors_f.close()
+	affils_f.close()
+	cleaned_affils_f.close()
+
+def clean_authors(db):
+	authors_f = open('data/microsoft/Authors.txt')
+	cleaned_affils_f = open('data/microsoft/AffilsCleaned.txt')
+	authors_cleaned_f = open('data/microsoft/AuthorsCleaned.txt', 'w')
+	command = 'SELECT paper_id FROM papers'
+	paper_ids = []
+	aut_number = 0
+	aff_author_list = [] # list of author IDs
+	for line in cleaned_affils_f:
+		aff_author_list.append(line)
+	for item in db.execute(command):
+		paper_ids.append(str(item[0]))
+	for line in authors_f:
+		print 'Checking Author file line number {}'.format(aff_number)
+		items = line.split('\t')
+		author_id = str(items[0])
+		author_name = str(items[1]).strip()
+		for pid_aid_pair in aff_author_list:
+			if str(pid_aid_pair.split('\t')[1].strip()) == author_id:
+				authors_cleaned_f.write('{}\t{}\t{}\n'.format(author_name, author_id, str(pid_aid_pair.split('\t')[0].strip())))
+		aut_number += 1
+	authors_f.close()
+	cleaned_affils_f.close()
+	authors_cleaned_f.close()
 
 
 # ------------------ Main Execution ---------------------
@@ -214,15 +274,21 @@ if __name__ == "__main__":
 		c.execute('''CREATE TABLE Papers(paper_id TEXT, title TEXT, year TEXT, paper_text TEXT)''')
 		c.execute('''CREATE TABLE Authors(author_id TEXT, author_name TEXT, paper_id TEXT)''')
 		c.execute('''CREATE TABLE Keywords(keyword TEXT, paper_id TEXT, confidence TEXT)''')
+		c.execute('''CREATE TABLE Paper_Authors(paper_id TEXT, author_id TEXT, sid TEXT)''')
 	except:
 		print "Already created SQL tables\n"
 	
 	# Populate Papers table
+	
 	index_txt_counter, papers_txt_counter, insertion_counter = populate_papers(c)
 	print cc.OKGREEN + str(insertion_counter) + "\t papers inserted" + cc.ENDC
 	print str(index_txt_counter) + "\t papers in index.txt"
 	print str(papers_txt_counter) + "\t papers in Papers.txt"
+	conn.commit()
 	
+	clean_affiliations(c)
+	clean_authors(c)
+
 	# Populate Authors table
 	authors_inserted = populate_authors(c)
 	print cc.OKGREEN + str(authors_inserted) + "\t authors inserted" + cc.ENDC
@@ -231,5 +297,8 @@ if __name__ == "__main__":
 	keywords_inserted = populate_keywords(c)
 	print cc.OKGREEN + str(keywords_inserted) + "\t keywords inserted" + cc.ENDC
 	
+	affiliations_inserted = populate_paper_authors(c)
+	print cc.OKGREEN + str(affiliations_inserted) + "\t affiliations inserted" + cc.ENDC
+
 	conn.commit()
 	conn.close()

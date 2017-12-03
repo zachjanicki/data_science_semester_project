@@ -33,14 +33,25 @@ PaperAuthorAffiliation.txt
     SID
 
 Authors.txt
-    AUD
+    AID
     AUT
 
+AffilsCleaned.txt
+    PID
+    AID
+    FID
+    AFF
+    SID
+
+AuthorsCleaned.txt
+    NAME
+    AID
+    PID
 
 DB schema
 =========
 
-Tables - Papers, Authors, Keywords
+Tables - Papers, Authors, Keywords, Paper_Authors
 
 Papers
     PAPER_ID
@@ -51,9 +62,13 @@ Papers
 Authors
     AUTHOR_ID
     AUTHOR_NAME
-    PAPER_ID
 
 Keywords
     KEYWORD
     PAPER_ID
     CONFIDENCE
+
+Paper_Authors
+    PAPER_ID
+    AUTHOR_ID
+    SID -- author sequence number
