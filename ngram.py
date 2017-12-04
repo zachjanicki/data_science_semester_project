@@ -4,6 +4,8 @@
 # Data Science - Final Project
 # Zach Janicki and Michael McRoskey
 
+def remove_stop_words():
+
 def ngram(string, n):
 	string = string.split(' ')
 	output = {}
