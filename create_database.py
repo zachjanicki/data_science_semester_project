@@ -1,3 +1,4 @@
+#!/usr/bin/python
 # create_database.py
 #
 # Data Science - Final Project
