@@ -62,6 +62,7 @@ Papers
 Authors
     AUTHOR_ID
     AUTHOR_NAME
+    PAPER_ID
 
 Keywords
     KEYWORD

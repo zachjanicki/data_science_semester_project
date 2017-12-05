@@ -53,7 +53,7 @@ def mine_entities():
 									entity_count[phrase] += 1
 
 		
-	with open('entity_count.txt','w') as fw:
+	with open('data/entity_count.txt','w') as fw:
 		col_width = (max(len(phrase) for phrase in entity_count))
 		for [phrase,count] in sorted(entity_count.items(), key=lambda x:-x[1]):
 			spaces = col_width - len(phrase) + 3
@@ -77,7 +77,7 @@ def type_entities():
 		paperid_path.append([paperid,path])
 	fr.close()
 	index,nindex = [{}],1 # phrase's index
-	fr = open('entity_count.txt','rb')
+	fr = open('data/entity_count.txt','rb')
 	for line in fr:
 		arr = line.strip('\r\n').split('\t')
 		phrase = arr[0]
@@ -147,7 +147,7 @@ def type_entities():
 					continue
 				i += 1
 		fr.close()
-	fw = open('entitytyping.txt','w')
+	fw = open('data/entitytyping.txt','w')
 	s = 'ENTITY\tCOUNT'
 	for c in range(0,n_context): s += '\tWINDOWSIZE'+str(c+1)
 	fw.write(s + '\n')
