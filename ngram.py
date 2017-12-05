@@ -82,7 +82,7 @@ def clean_stopwords(ngram_dict, n):
 	
 	
 def insert_term(db, paper_id, term, n, count):
-	command = 'INSERT INTO Entities VALUES ("{}", "{}", {}, {})'.format(paper_id, term, str(n), str(count))
+	command = 'INSERT INTO Entities VALUES ("{}", "{}", {}, {}, "")'.format(paper_id, term, str(n), str(count))
 	db.execute(command)	
 
 
@@ -111,6 +111,8 @@ def populate_ngrams(db, minimum_support, max_n_gram):
 		papers_affected += 1
 		sys.stdout.write("\r%d\t papers affected" % papers_affected)
 		sys.stdout.flush()
+		if papers_affected == 15:
+			break
 		
 	return terms_inserted, papers_affected
 	
@@ -121,9 +123,9 @@ if __name__ == "__main__":
 	c = conn.cursor()
 		
 	try:
-		c.execute('''CREATE TABLE Entities(paper_id TEXT, term TEXT, n INT, count INT)''')
+		c.execute('''CREATE TABLE Entities(paper_id TEXT, term TEXT, n INT, count INT, type TEXT)''')
 	except:
-		print "Already created SQL tables\n"
+		print "Already created SQL table\n"
 	
 	minimum_support = 5
 	max_n_gram = 5
