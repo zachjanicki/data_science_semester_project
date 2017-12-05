@@ -82,8 +82,6 @@ def clean_stopwords(ngram_dict, n):
 	
 	
 def insert_term(db, paper_id, term, n, count):
-#	if term_already_inserted(db, author_id, author_name, paper_id):
-#		return False
 	command = 'INSERT INTO n_gram VALUES ("{}", "{}", {}, {})'.format(paper_id, term, str(n), str(count))
 	db.execute(command)	
 
@@ -91,8 +89,12 @@ def insert_term(db, paper_id, term, n, count):
 def populate_ngrams(db, minimum_support, max_n_gram):
 	terms_inserted = 0
 	papers_affected = 0
+	
 	command = '''SELECT paper_id, paper_text FROM Papers'''
-	for paper_id, paper_text in db.execute(command):
+	db.execute(command)
+	result = db.fetchall()
+
+	for paper_id, paper_text in result:
 		grams = {}
 		cleaned_paper = clean(paper_text)
 		for n in range(2, max_n_gram+1):
@@ -100,15 +102,16 @@ def populate_ngrams(db, minimum_support, max_n_gram):
 			cleaned_ngram = clean_stopwords(raw_ngram, n)
 			for k,v in cleaned_ngram.items():
 				if int(v) < minimum_support:
-				   del cleaned_ngram[k]
+					del cleaned_ngram[k]
 				else:
 					insert_term(db, paper_id, k, n, v)
 					terms_inserted += 1
-#					sys.stdout.write("\r%d\t terms inserted" % terms_inserted)
-#					sys.stdout.flush()
+					# sys.stdout.write("\r%d\t terms inserted" % terms_inserted)
+					# sys.stdout.flush()
 		papers_affected += 1
 		sys.stdout.write("\r%d\t papers affected" % papers_affected)
 		sys.stdout.flush()
+		
 	return terms_inserted, papers_affected
 	
 
@@ -116,7 +119,7 @@ if __name__ == "__main__":
 	# Reference Database
 	conn = sqlite3.connect('data/database.db')
 	c = conn.cursor()
-	
+		
 	try:
 		c.execute('''CREATE TABLE n_gram(paper_id TEXT, term TEXT, n INT, count INT)''')
 	except:
