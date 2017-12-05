@@ -5,7 +5,8 @@
 # Data Science - Final Project
 # Zach Janicki and Michael McRoskey
 
-import sqlite3, re
+import sqlite3, re, sys
+
 
 def ngram(string, n):
 	string = string.split(' ')
@@ -15,6 +16,7 @@ def ngram(string, n):
 		output.setdefault(g, 0)
 		output[g] += 1
 	return output
+	
 
 def print_dict(ngram_dict):
 	try:
@@ -25,14 +27,17 @@ def print_dict(ngram_dict):
 		spaces = col_width - len(key) + 3
 		print key + " "*spaces + str(value)
 		
+		
 def clean(s):
 	s = s.lower()
 	return s
+	
 		
 def strip_punct(s):
 	s = re.sub('[^A-Za-z0-9]+', '', s)
 	s = " ".join(s.split())
 	return s.encode('ascii', 'ignore').decode('ascii')
+	
 
 def clean_stopwords(ngram_dict, n):
 	# Load in stopwords
@@ -75,32 +80,58 @@ def clean_stopwords(ngram_dict, n):
 	
 	return ngram_dict
 	
+	
+def insert_term(db, paper_id, term, n, count):
+#	if term_already_inserted(db, author_id, author_name, paper_id):
+#		return False
+	command = 'INSERT INTO n_gram VALUES ("{}", "{}", {}, {})'.format(paper_id, term, str(n), str(count))
+	db.execute(command)	
+
+
+def populate_ngrams(db, minimum_support, max_n_gram):
+	terms_inserted = 0
+	papers_affected = 0
+	command = '''SELECT paper_id, paper_text FROM Papers'''
+	for paper_id, paper_text in db.execute(command):
+		grams = {}
+		cleaned_paper = clean(paper_text)
+		for n in range(2, max_n_gram+1):
+			raw_ngram = ngram(cleaned_paper, n)
+			cleaned_ngram = clean_stopwords(raw_ngram, n)
+			for k,v in cleaned_ngram.items():
+				if int(v) < minimum_support:
+				   del cleaned_ngram[k]
+				else:
+					insert_term(db, paper_id, k, n, v)
+					terms_inserted += 1
+#					sys.stdout.write("\r%d\t terms inserted" % terms_inserted)
+#					sys.stdout.flush()
+		papers_affected += 1
+		sys.stdout.write("\r%d\t papers affected" % papers_affected)
+		sys.stdout.flush()
+	return terms_inserted, papers_affected
+	
 
 if __name__ == "__main__":
 	# Reference Database
 	conn = sqlite3.connect('data/database.db')
 	c = conn.cursor()
 	
-	minimum_support = 5
+	try:
+		c.execute('''CREATE TABLE n_gram(paper_id TEXT, term TEXT, n INT, count INT)''')
+	except:
+		print "Already created SQL tables\n"
 	
-	command = '''SELECT paper_text FROM Papers'''
-	for paper in c.execute(command):
-		grams = {}
-		cleaned_paper = clean(paper[0])
-		for n in range(2,5+1):
-			name = str(n) + "-gram"
-			raw_ngram = ngram(cleaned_paper, n)
-			cleaned_ngram = clean_stopwords(raw_ngram, n)
-			for k,v in cleaned_ngram.items():
-				if int(v) < minimum_support:
-				   del cleaned_ngram[k]
-			grams[name] = cleaned_ngram
-		print "\n----------------2----------------"
-		print_dict(grams["2-gram"])
-		print "\n----------------3----------------"
-		print_dict(grams["3-gram"])
-		print "\n----------------4----------------"
-		print_dict(grams["4-gram"])
-		print "\n----------------5----------------"
-		print_dict(grams["5-gram"])
-		break
+	minimum_support = 5
+	max_n_gram = 5
+	
+	terms_inserted, papers_affected = populate_ngrams(c, minimum_support, max_n_gram)
+	print "\n\n" + str(terms_inserted) + "\t terms inserted"
+	print str(papers_affected) + "\t papers affected"
+	
+#	command = '''SELECT * FROM n_gram'''
+#	for row in c.execute(command): 
+#		print row
+
+	conn.commit()
+	conn.close()
