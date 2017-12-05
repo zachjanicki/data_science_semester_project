@@ -128,8 +128,10 @@ def populate_papers(db):
 
 
 # ------------------ Authors table ---------------------
-def author_already_inserted(db, author_id):
-	command = 'SELECT 1 FROM Authors WHERE author_id = \'' + author_id + '\' LIMIT 1'
+def author_already_inserted(db, author_id, author_name, paper_id):
+	return False
+	command = 'SELECT 1 FROM Authors WHERE author_id = "{}" AND author_name = "{}" and paper_id = "{}" LIMIT 1'.format(author_id, author_name, paper_id)
+	print command
 	for row in db.execute(command):
 		if row[0] is 1:
 			return True
@@ -137,9 +139,10 @@ def author_already_inserted(db, author_id):
 			return False
 
 def insert_author(db, author_id, author_name, paper_id):
-	if author_already_inserted(db, author_id):
+	if author_already_inserted(db, author_id, author_name, paper_id):
 		return False
-	command = 'INSERT INTO Authors VALUES (\"' + author_id + '\",\"' + author_name + '\"'
+	command = 'INSERT INTO Authors VALUES ("{}", "{}", "{}")'.format(author_id, author_name, paper_id)
+	print author_id, author_name, paper_id
 	db.execute(command)
 	if DEBUG:
 		print "Inserted author \t" + author_name + "\t" + author_id
@@ -147,12 +150,13 @@ def insert_author(db, author_id, author_name, paper_id):
 
 def populate_authors(db):
 	counter = 0
-	with open('data/microsoft/Authors.txt') as f:
+	with open('data/microsoft/AuthorsCleaned.txt') as f:
 		for line in f:
 			content = line.split("\t")
-			author_id = content[0]
-			author_name = content[1]
-			return_status = insert_author(db, author_id, author_name)
+			author_name = str(content[0])
+			author_id = str(content[1])
+			paper_id = str(content[2].strip('\n')) # getting rid of those pesky new lines
+			return_status = insert_author(db, author_id, author_name, paper_id)
 			if return_status:
 				counter += 1
 	return counter
@@ -168,8 +172,8 @@ def keyword_already_inserted(db, keyword):
 			return False
 
 def insert_keyword(db, keyword, paper_id, confidence):
-	if keyword_already_inserted(db, keyword):
-		return False
+	#if keyword_already_inserted(db, keyword):
+	#	return False
 	command = 'INSERT INTO Keywords VALUES (\"' + keyword + '\",\"' + paper_id + '\",\"' + confidence + '\")'
 	db.execute(command)
 	if DEBUG:
@@ -186,14 +190,44 @@ def populate_keywords(db):
 			keyword = content[1]
 			# keyword_id = content[2] 	# not recommended to use
 			confidence = "0" 			# not sure what confidence refers to
+			print counter, paper_id, keyword
 			return_status = insert_keyword(db, keyword, paper_id, confidence)
 			if return_status:
 				counter += 1
 	return counter
 
-# ---------------- Paper Authors table ---------------------
-################### this needs to be completed ###################
-#def affiliation_already_inserted(db)
+# ---------------- Affiliations table ---------------------
+def affiliation_already_inserted(db, paper_id, author_id, author_sequence_id):
+	return False
+	command = 'SELECT 1 FROM Affiliations WHERE paper_id = "{}" AND author_id = "{}" AND sid = "{}"'.format(paper_id, author_id, author_sequence_id)
+	for row in db.execute(command):
+		if row[0] is 1:
+			return True
+		else:
+			return False
+
+def insert_affiliation(db, paper_id, author_id, author_sequence_id):
+	if affiliation_already_inserted(db, paper_id, author_id, author_sequence_id):
+		return False
+	command = 'INSERT INTO Affiliations VALUES ("{}", "{}", "{}")'.format(paper_id, author_id, author_sequence_id)
+	db.execute(command)
+	if DEBUG:
+		print "Inserted [{}, {}, {}]".format(paper_id, author_id, author_sequence_id)
+	return True
+
+def populate_affiliations(db):
+	counter = 0
+	with open('data/microsoft/AffilsCleaned.txt') as f:
+		for line in f:
+			content = line.split('\t')
+			paper_id = str(content[0])
+			author_id = str(content[1])
+			author_sequence_id = str(content[2].strip('\n')) # getting rid of those pesky new lines
+			return_status = insert_affiliation(db, paper_id, author_id, author_sequence_id)
+			print counter, paper_id, author_id, author_sequence_id
+			if return_status:
+				counter += 1
+	return counter
 	
 	
 def display_table(db, table):
@@ -275,7 +309,7 @@ if __name__ == "__main__":
 		c.execute('''CREATE TABLE Papers(paper_id TEXT, title TEXT, year TEXT, paper_text TEXT)''')
 		c.execute('''CREATE TABLE Authors(author_id TEXT, author_name TEXT, paper_id TEXT)''')
 		c.execute('''CREATE TABLE Keywords(keyword TEXT, paper_id TEXT, confidence TEXT)''')
-		c.execute('''CREATE TABLE Paper_Authors(paper_id TEXT, author_id TEXT, sid TEXT)''')
+		c.execute('''CREATE TABLE Affiliations(paper_id TEXT, author_id TEXT, sid TEXT)''')
 	except:
 		print "Already created SQL tables\n"
 	
@@ -287,8 +321,8 @@ if __name__ == "__main__":
 	print str(papers_txt_counter) + "\t papers in Papers.txt"
 	conn.commit()
 	
-	clean_affiliations(c)
-	clean_authors(c)
+	# clean_affiliations(c)
+	# clean_authors(c)
 
 	# Populate Authors table
 	authors_inserted = populate_authors(c)
@@ -298,7 +332,7 @@ if __name__ == "__main__":
 	keywords_inserted = populate_keywords(c)
 	print cc.OKGREEN + str(keywords_inserted) + "\t keywords inserted" + cc.ENDC
 	
-	affiliations_inserted = populate_paper_authors(c)
+	affiliations_inserted = populate_affiliations(c)
 	print cc.OKGREEN + str(affiliations_inserted) + "\t affiliations inserted" + cc.ENDC
 
 	conn.commit()

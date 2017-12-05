@@ -51,7 +51,7 @@ AuthorsCleaned.txt
 DB schema
 =========
 
-Tables - Papers, Authors, Keywords, Paper_Authors
+Tables - Papers, Authors, Keywords, Affiliations
 
 Papers
     PAPER_ID
@@ -68,7 +68,7 @@ Keywords
     PAPER_ID
     CONFIDENCE
 
-Paper_Authors
+Affiliations
     PAPER_ID
     AUTHOR_ID
     SID -- author sequence number
