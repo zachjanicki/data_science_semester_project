@@ -2,6 +2,8 @@ data/microsoft/
 data/text/
 data/database.db
 data/database.db-journal
+data/entity_count.txt
+data/entitytyping.txt
 sci_bot.py
 *.pyc
 Papers_cleaned.txt
