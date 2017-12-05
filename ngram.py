@@ -82,7 +82,7 @@ def clean_stopwords(ngram_dict, n):
 	
 	
 def insert_term(db, paper_id, term, n, count):
-	command = 'INSERT INTO n_gram VALUES ("{}", "{}", {}, {})'.format(paper_id, term, str(n), str(count))
+	command = 'INSERT INTO Entities VALUES ("{}", "{}", {}, {})'.format(paper_id, term, str(n), str(count))
 	db.execute(command)	
 
 
@@ -121,7 +121,7 @@ if __name__ == "__main__":
 	c = conn.cursor()
 		
 	try:
-		c.execute('''CREATE TABLE n_gram(paper_id TEXT, term TEXT, n INT, count INT)''')
+		c.execute('''CREATE TABLE Entities(paper_id TEXT, term TEXT, n INT, count INT)''')
 	except:
 		print "Already created SQL tables\n"
 	
@@ -132,7 +132,7 @@ if __name__ == "__main__":
 	print "\n\n" + str(terms_inserted) + "\t terms inserted"
 	print str(papers_affected) + "\t papers affected"
 	
-#	command = '''SELECT * FROM n_gram'''
+#	command = '''SELECT * FROM Entities'''
 #	for row in c.execute(command): 
 #		print row
 
