@@ -5,7 +5,7 @@
 # Data Science - Final Project
 # Zach Janicki and Michael McRoskey
 
-import sqlite3, string, re, unicodedata
+import sqlite3, re
 
 def ngram(string, n):
 	string = string.split(' ')
@@ -25,20 +25,11 @@ def print_dict(ngram_dict):
 def clean(s):
 	s = s.lower()
 	return s
-#	s = re.sub('[^A-Za-z0-9]+', '', s)
-#	s = " ".join(s.split())
-#	return s.encode('ascii', 'ignore').decode('ascii')
 		
 def strip_punct(s):
 	s = re.sub('[^A-Za-z0-9]+', '', s)
 	s = " ".join(s.split())
 	return s.encode('ascii', 'ignore').decode('ascii')
-#	s = " ".join(s.split())
-#	return re.sub('[^A-Za-z0-9]+', '', s)
-#	punctutation_cats = set(['Pc', 'Pd', 'Ps', 'Pe', 'Pi', 'Pf', 'Po'])
-#	return ''.join(x for x in s if unicodedata.category(x) not in punctutation_cats)
-#	return re.sub(ur"\p{P}+", "", s)
-#	return s.translate(None, string.punctuation)
 
 def clean_stopwords(ngram_dict, n):
 	# Load in stopwords
@@ -87,38 +78,18 @@ if __name__ == "__main__":
 	conn = sqlite3.connect('data/database.db')
 	c = conn.cursor()
 	
-	grams = {}
+	minimum_support = 5
 	
 	command = '''SELECT paper_text FROM Papers'''
 	for paper in c.execute(command):
+		grams = {}
 		cleaned_paper = clean(paper[0])
 		for n in range(2,5+1):
 			name = str(n) + "-gram"
 			raw_ngram = ngram(cleaned_paper, n)
 			cleaned_ngram = clean_stopwords(raw_ngram, n)
 			for k,v in cleaned_ngram.items():
-				if int(v) < 5:
+				if int(v) < minimum_support:
 				   del cleaned_ngram[k]
 			grams[name] = cleaned_ngram
-		break
-
-	try:
-		print "====================2===================="
-		print grams["2-gram"]
-	except:
-		print "error 2"
-	try:
-		print "====================3===================="
-		print grams["3-gram"]
-	except:
-		print "error 3"
-	try:
-		print "====================4===================="
 		print grams["4-gram"]
-	except:
-		print "error 4"
-	try:
-		print "====================5===================="
-		print grams["5-gram"]
-	except:
-		print "error 5"
