@@ -17,7 +17,10 @@ def ngram(string, n):
 	return output
 
 def print_dict(ngram_dict):
-	col_width = (max(len(key) for key in ngram_dict))
+	try:
+		col_width = (max(len(key) for key in ngram_dict))
+	except:
+		col_width = 0
 	for key, value in reversed(sorted(ngram_dict.iteritems(), key=lambda (k,v): (v,k))):
 		spaces = col_width - len(key) + 3
 		print key + " "*spaces + str(value)
@@ -92,4 +95,12 @@ if __name__ == "__main__":
 				if int(v) < minimum_support:
 				   del cleaned_ngram[k]
 			grams[name] = cleaned_ngram
-		print grams["4-gram"]
+		print "\n----------------2----------------"
+		print_dict(grams["2-gram"])
+		print "\n----------------3----------------"
+		print_dict(grams["3-gram"])
+		print "\n----------------4----------------"
+		print_dict(grams["4-gram"])
+		print "\n----------------5----------------"
+		print_dict(grams["5-gram"])
+		break
