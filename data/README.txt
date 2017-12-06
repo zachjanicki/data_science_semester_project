@@ -58,6 +58,7 @@ Papers
     TITLE
     YEAR
     PAPER_TEXT
+    CONF
 
 Authors
     AUTHOR_ID

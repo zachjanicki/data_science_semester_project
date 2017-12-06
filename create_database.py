@@ -10,7 +10,7 @@ from console_colors import console_colors as cc
 
 # Global vars ---------------------
 DEBUG = False
-DEBUG_VERBOSE = True
+DEBUG_VERBOSE = False
 
 # ------------------ Papers table ---------------------
 def paper_already_inserted(db, paper_id):
@@ -26,11 +26,11 @@ def paper_already_inserted(db, paper_id):
 			return False
 	
 
-def insert_paper(db, paper_id, title, year, paper_text):
+def insert_paper(db, paper_id, title, year, paper_text, conf):
 	# Don't insert if already exists
 	if paper_already_inserted(db, paper_id):
 		return False
-	command = 'INSERT INTO Papers VALUES (\"' + paper_id + '\",\"' + title + '\",\"' + year + '\",\"' + paper_text + '\")'
+	command = 'INSERT INTO Papers VALUES ("{}","{}","{}","{}","{}")'.format(paper_id, title, year, paper_text, conf)
 	db.execute(command)
 	return True
 
@@ -77,6 +77,7 @@ def populate_papers(db):
 			line = line.strip("\n")
 			content = line.split("\t")
 			folder_name = content[0]
+			conference = ''.join(i for i in folder_name if not i.isdigit())
 			file_name = content[1]
 			paper_id = content[2]
 			title = content[3]
@@ -111,7 +112,7 @@ def populate_papers(db):
 			if paper_id in papers:
 				raw_text = extract_content(papers[paper_id][0])
 				clean_text = clean(raw_text)
-				return_status = insert_paper(db, paper_id, title, year, clean_text)
+				return_status = insert_paper(db, paper_id, title, year, clean_text, conf)
 				if return_status:
 					insertion_counter += 1
 					if DEBUG:
@@ -306,7 +307,7 @@ if __name__ == "__main__":
 	
 	# Try to create blank Papers, Authors, Keywords tables (if first run)
 	try:
-		c.execute('''CREATE TABLE Papers(paper_id TEXT, title TEXT, year TEXT, paper_text TEXT)''')
+		c.execute('''CREATE TABLE Papers(paper_id TEXT, title TEXT, year TEXT, paper_text TEXT, conf TEXT)''')
 		c.execute('''CREATE TABLE Authors(author_id TEXT, author_name TEXT, paper_id TEXT)''')
 		c.execute('''CREATE TABLE Keywords(keyword TEXT, paper_id TEXT, confidence TEXT)''')
 		c.execute('''CREATE TABLE Affiliations(paper_id TEXT, author_id TEXT, sid TEXT)''')
