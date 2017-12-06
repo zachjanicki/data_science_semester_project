@@ -111,7 +111,7 @@ def populate_ngrams(db, minimum_support, max_n_gram):
 		papers_affected += 1
 		sys.stdout.write("\r%d\t papers affected" % papers_affected)
 		sys.stdout.flush()
-		if papers_affected == 15:
+		if papers_affected == 100:
 			break
 		
 	return terms_inserted, papers_affected
