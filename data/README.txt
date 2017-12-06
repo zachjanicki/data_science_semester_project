@@ -80,3 +80,4 @@ Entities
     N         -- int, number of words in term
     COUNT     -- frequency
     TYPE      -- {"METHOD","PROBLEM","DATASET","METRIC"}
+    ABBR      -- {0,1} represents if entity was abbreviation or not
