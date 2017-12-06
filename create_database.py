@@ -57,7 +57,7 @@ def extract_content(path):
 
 def clean(string):
 	# string = string.lower()
-	chars_to_remove = ['\"', '\'', '(', ')', '\x00']
+	chars_to_remove = ['\"', '\'', '\x00']
 	string = re.sub('[' + re.escape(''.join(chars_to_remove)) + ']', '', string)
     # return string.encode('ascii', errors='ignore').decode()
 	return string
