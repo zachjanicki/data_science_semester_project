@@ -171,6 +171,6 @@ def type_entities():
 		fw.write(s + '\n')
 	fw.close()
 
-mine_entities()
-#type_entities()
+#mine_entities()
+type_entities()
 

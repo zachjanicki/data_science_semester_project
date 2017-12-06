@@ -51,7 +51,7 @@ AuthorsCleaned.txt
 DB schema
 =========
 
-Tables - Papers, Authors, Keywords, Affiliations
+Tables - Papers, Authors, Keywords, Affiliations, Entities
 
 Papers
     PAPER_ID
@@ -73,3 +73,10 @@ Affiliations
     PAPER_ID
     AUTHOR_ID
     SID -- author sequence number
+    
+Entities
+    PAPER_ID
+    TERM      -- phrase
+    N         -- int, number of words in term
+    COUNT     -- frequency
+    TYPE      -- {"METHOD","PROBLEM","DATASET","METRIC"}
