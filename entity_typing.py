@@ -18,11 +18,11 @@ command = '''SELECT * FROM Entities'''
 db.execute(command)
 result = db.fetchall()
 
-for paper_id, term, n, count, e_type in result:
+for paper_id, term, n, count, e_type, abbr in result:
 	terms = term.split()
 	for word in terms:
 		for i, entity_types in enumerate(wordsets):
-			if word in entity_types: 
+			if word in entity_types:
 				command = 'UPDATE Entities SET type = "{}" WHERE paper_id = "{}" AND term = "{}"'.format(types[i], paper_id, term)
 				db.execute(command)
 				conn.commit()
