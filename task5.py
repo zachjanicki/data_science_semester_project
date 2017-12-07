@@ -36,7 +36,7 @@ def extract_data(db):
 
     return list_tran, problems, methods, datasets
 
-def generate_associations(transactions, min_sup):
+def generate_associations(transactions, min_sup, problems, methods, datasets):
     apriori_patterns = apriori(transactions, supp=-min_sup)
     print '-------- Apriori --------'
     output = []
@@ -44,11 +44,28 @@ def generate_associations(transactions, min_sup):
         print pattern,support
     print 'Number of patterns:',len(apriori_patterns)
 
-    rules = apriori(transactions,target='r',supp=-10,conf=70,report='sc')
+    rules = apriori(transactions,target='r',supp=-5,conf=90,report='sc')
     print '-------- One-to-Many Association Rules --------'
+    counter = 0
     for (ruleleft,ruleright,support,confidence) in sorted(rules,key=lambda x:x[0]):
-        print ruleleft,'-->',ruleright,support,confidence
+        if ruleleft in datasets:
+            for rule in ruleright:
+                if rule not in datasets:
+                    counter += 1
+                    print ruleleft,'-->',ruleright,support,confidence    
+        elif ruleleft in problems:
+            for rule in ruleright:
+                if rule not in problems:
+                    counter += 1
+                    print ruleleft,'-->',ruleright,support,confidence
+        elif ruleleft in methods:
+            for rule in ruleright:
+                if rule not in methods:
+                    counter += 1
+                    print ruleleft,'-->',ruleright,support,confidence
+        #print ruleleft,'-->',ruleright,support,confidence
     print 'Number of rules:',len(rules)
+    print counter
 
 
 if __name__ == '__main__':
@@ -56,4 +73,4 @@ if __name__ == '__main__':
     c = conn.cursor()
     transactions, problems, methods, datasets = extract_data(c)
     #print transactions
-    generate_associations(transactions, 10)
+    generate_associations(transactions, 10, problems, methods, datasets)
