@@ -65,7 +65,6 @@ def generate_associations(transactions, min_sup, problems, methods, datasets):
                     print ruleleft,'-->',ruleright,support,confidence
         #print ruleleft,'-->',ruleright,support,confidence
     print 'Number of rules:',len(rules)
-    print counter
 
 
 if __name__ == '__main__':

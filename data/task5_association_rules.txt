@@ -1,0 +1,575 @@
+19485
+-------- Apriori --------
+(u'data mining',) 688
+(u'data set',) 560
+(u'data sets',) 405
+(u'data sets', u'data set') 304
+(u'training data',) 302
+(u'data set', u'data mining') 154
+(u'data sets', u'data mining') 122
+(u'optimization problem',) 121
+(u'data points',) 111
+(u'clustering algorithm',) 103
+(u'data sets', u'data set', u'data mining') 97
+(u'topic model',) 85
+(u'proposed method',) 83
+(u'synthetic data',) 83
+(u'data sources',) 76
+(u'training data', u'data set') 76
+(u'language model',) 69
+(u'labeled data',) 69
+(u'training data', u'data mining') 67
+(u'linked data',) 66
+(u'learning algorithm',) 66
+(u'greedy algorithm',) 63
+(u'em algorithm',) 61
+(u'test data',) 61
+(u'model parameters',) 59
+(u'web application',) 58
+(u'data structure',) 56
+(u'pattern mining',) 54
+(u'unlabeled data',) 54
+(u'data streams',) 53
+(u'real data',) 53
+(u'training data', u'data sets') 53
+(u'data model',) 51
+(u'proposed model',) 50
+(u'mixture model',) 50
+(u'data points', u'data set') 47
+(u'web data',) 46
+(u'generative model',) 44
+(u'proposed approach',) 44
+(u'data point',) 44
+(u'data points', u'data mining') 44
+(u'recommender system',) 43
+(u'proposed algorithm',) 43
+(u'training data', u'data sets', u'data set') 42
+(u'synthetic data', u'data set') 41
+(u'data points', u'data sets') 40
+(u'probabilistic model',) 38
+(u'regression model',) 38
+(u'data points', u'data sets', u'data set') 38
+(u'relational data',) 37
+(u'data analysis',) 37
+(u'synthetic data', u'data sets') 37
+(u'test data', u'training data') 35
+(u'text mining',) 34
+(u'synthetic data', u'data sets', u'data set') 34
+(u'xml data',) 33
+(u'optimization problem', u'data sets') 33
+(u'data point', u'data points') 32
+(u'synthetic data', u'data mining') 32
+(u'data extraction',) 31
+(u'log data',) 31
+(u'structured data',) 31
+(u'data source',) 31
+(u'data stream',) 31
+(u'multi task',) 31
+(u'dimensional data',) 30
+(u'pattern mining', u'data mining') 30
+(u'unlabeled data', u'labeled data') 30
+(u'optimization problem', u'data set') 30
+(u'generative process',) 29
+(u'graphical model',) 29
+(u'data collection',) 29
+(u'clustering algorithm', u'data set') 28
+(u'linear model',) 27
+(u'lda model',) 27
+(u'rule mining',) 27
+(u'large data',) 27
+(u'original data',) 27
+(u'real data', u'data set') 26
+(u'labeled data', u'training data') 26
+(u'rdf data',) 25
+(u'meta data',) 25
+(u'approximation algorithm',) 25
+(u'dirichlet process',) 25
+(u'itemset mining',) 25
+(u'data source', u'data sources') 25
+(u'data records',) 25
+(u'click model',) 24
+(u'markov model',) 24
+(u'data streams', u'data mining') 24
+(u'optimization problem', u'data sets', u'data set') 24
+(u'data structures',) 23
+(u'task learning', u'multi task') 23
+(u'task learning',) 23
+(u'data stream', u'data streams') 23
+(u'recommendation system',) 22
+(u'prediction model',) 22
+(u'ranking model',) 22
+(u'model selection',) 22
+(u'time series data', u'series data') 22
+(u'time series data',) 22
+(u'series data',) 22
+(u'clustering algorithm', u'data sets') 22
+(u'clustering algorithm', u'data mining') 22
+(u'training data', u'data set', u'data mining') 22
+(u'data driven',) 21
+(u'prediction problem',) 21
+(u'multi task learning', u'task learning', u'multi task') 21
+(u'multi task learning', u'task learning') 21
+(u'multi task learning', u'multi task') 21
+(u'multi task learning',) 21
+(u'itemset mining', u'data mining') 21
+(u'data point', u'data sets') 21
+(u'data point', u'data set') 21
+(u'mixture model', u'data set') 21
+(u'real data', u'data sets') 21
+(u'test data', u'data set') 21
+(u'data points', u'data set', u'data mining') 21
+(u'network data',) 20
+(u'proposed framework',) 20
+(u'factor model',) 20
+(u'software engineering',) 20
+(u'graph model',) 20
+(u'mining algorithms',) 20
+(u'association rule mining', u'rule mining') 20
+(u'association rule mining',) 20
+(u'input data',) 20
+(u'labeled data', u'data set') 20
+(u'opinion mining',) 19
+(u'graph mining',) 19
+(u'cascade model',) 19
+(u'sampling algorithm',) 19
+(u'inference algorithm',) 19
+(u'mining frequent',) 19
+(u'data items',) 19
+(u'data point', u'data sets', u'data set') 19
+(u'real data', u'data sets', u'data set') 19
+(u'test data', u'data mining') 19
+(u'synthetic data', u'data set', u'data mining') 19
+(u'search system',) 18
+(u'ranking algorithm',) 18
+(u'experimental evaluation',) 18
+(u'missing data',) 18
+(u'classification model',) 18
+(u'learning problem',) 18
+(u'learning approach',) 18
+(u'frequent pattern mining', u'pattern mining') 18
+(u'frequent pattern mining',) 18
+(u'data distribution',) 18
+(u'relational data', u'data mining') 18
+(u'large data', u'data sets') 18
+(u'large data', u'data set') 18
+(u'test data', u'data sets') 18
+(u'labeled data', u'data sets') 18
+(u'user model',) 17
+(u'media data',) 17
+(u'prediction task',) 17
+(u'detection algorithm',) 17
+(u'historical data',) 17
+(u'data size',) 17
+(u'data objects',) 17
+(u'learning method',) 17
+(u'mining algorithm',) 17
+(u'privacy preserving data', u'preserving data') 17
+(u'privacy preserving data',) 17
+(u'preserving data',) 17
+(u'learning framework',) 17
+(u'dimensional data', u'data sets') 17
+(u'data point', u'data points', u'data set') 17
+(u'unlabeled data', u'training data') 17
+(u'learning algorithm', u'data sets') 17
+(u'learning algorithm', u'data set') 17
+(u'proposed method', u'data sets') 17
+(u'proposed method', u'data set') 17
+(u'clustering algorithm', u'data sets', u'data set') 17
+(u'synthetic data', u'data sets', u'data mining') 17
+(u'data points', u'data sets', u'data mining') 17
+(u'social media data', u'media data') 16
+(u'social media data',) 16
+(u'query evaluation',) 16
+(u'data integration',) 16
+(u'clickthrough data',) 16
+(u'search task',) 16
+(u'big data',) 16
+(u'file system',) 16
+(u'classification problem',) 16
+(u'learning process',) 16
+(u'baseline model',) 16
+(u'baseline method',) 16
+(u'data sparsity',) 16
+(u'high dimensional data', u'dimensional data') 16
+(u'high dimensional data',) 16
+(u'real world data', u'world data') 16
+(u'real world data',) 16
+(u'world data',) 16
+(u'dimensional data', u'data set') 16
+(u'data point', u'data points', u'data sets') 16
+(u'data point', u'data mining') 16
+(u'real data', u'synthetic data') 16
+(u'unlabeled data', u'data sets') 16
+(u'synthetic data', u'data sets', u'data set', u'data mining') 16
+(u'optimization problem', u'training data') 16
+(u'data points', u'data sets', u'data set', u'data mining') 16
+(u'search algorithm',) 15
+(u'open data',) 15
+(u'graph data',) 15
+(u'business process',) 15
+(u'process model',) 15
+(u'evaluation metrics',) 15
+(u'clustering method',) 15
+(u'selection algorithm',) 15
+(u'frequent itemset mining', u'itemset mining') 15
+(u'frequent itemset mining',) 15
+(u'mining process',) 15
+(u'new data',) 15
+(u'dimensional data', u'data sets', u'data set') 15
+(u'data stream', u'data mining') 15
+(u'large data', u'data sets', u'data set') 15
+(u'greedy algorithm', u'data mining') 15
+(u'data point', u'data points', u'data sets', u'data set') 15
+(u'mixture model', u'data sets', u'data set') 15
+(u'mixture model', u'data sets') 15
+(u'unlabeled data', u'data set') 15
+(u'learning algorithm', u'training data') 15
+(u'topic model', u'data set') 15
+(u'optimization problem', u'data mining') 15
+(u'data points', u'training data') 15
+(u'relational database',) 14
+(u'click data',) 14
+(u'sampling method',) 14
+(u'operating system',) 14
+(u'heterogeneous data',) 14
+(u'sensor data',) 14
+(u'predictive model',) 14
+(u'data collected',) 14
+(u'training dataset',) 14
+(u'poisson process',) 14
+(u'expression data', u'gene expression data') 14
+(u'expression data',) 14
+(u'gene expression data',) 14
+(u'data matrix',) 14
+(u'testing data',) 14
+(u'mining frequent', u'data mining') 14
+(u'privacy preserving data', u'data mining', u'preserving data') 14
+(u'privacy preserving data', u'data mining') 14
+(u'preserving data', u'data mining') 14
+(u'original data', u'data mining') 14
+(u'proposed algorithm', u'data sets') 14
+(u'em algorithm', u'data set') 14
+(u'em algorithm', u'data mining') 14
+(u'test data', u'data sets', u'data set') 14
+(u'topic model', u'data mining') 14
+(u'labeled data', u'data mining') 14
+(u'proposed method', u'optimization problem') 14
+(u'proposed method', u'data mining') 14
+(u'twitter data',) 13
+(u'selection problem',) 13
+(u'application server',) 13
+(u'maximization problem',) 13
+(u'raw data',) 13
+(u'mining tasks',) 13
+(u'frequent itemset mining', u'data mining', u'itemset mining') 13
+(u'frequent itemset mining', u'data mining') 13
+(u'mining algorithms', u'data mining') 13
+(u'synthetic data sets', u'synthetic data', u'data sets') 13
+(u'synthetic data sets', u'synthetic data') 13
+(u'synthetic data sets', u'data sets') 13
+(u'synthetic data sets',) 13
+(u'rule mining', u'data mining') 13
+(u'dimensional data', u'data mining') 13
+(u'large data', u'data mining') 13
+(u'original data', u'data sets') 13
+(u'proposed model', u'data set') 13
+(u'data structure', u'data mining') 13
+(u'data point', u'data points', u'data mining') 13
+(u'mixture model', u'data mining') 13
+(u'em algorithm', u'training data') 13
+(u'learning algorithm', u'data mining') 13
+(u'proposed method', u'data sets', u'data set') 13
+(u'training data', u'data sets', u'data mining') 13
+(u'personal data',) 12
+(u'pagerank algorithm',) 12
+(u'link prediction problem', u'prediction problem') 12
+(u'link prediction problem',) 12
+(u'extraction algorithm',) 12
+(u'search process',) 12
+(u'retrieval model',) 12
+(u'diffusion process',) 12
+(u'weighting scheme',) 12
+(u'text data',) 12
+(u'observed data',) 12
+(u'usage data',) 12
+(u'data center',) 12
+(u'mining techniques',) 12
+(u'graph mining', u'data mining') 12
+(u'data item',) 12
+(u'large data sets', u'large data', u'data sets') 12
+(u'large data sets', u'large data') 12
+(u'large data sets', u'data sets') 12
+(u'large data sets',) 12
+(u'time series data', u'data mining', u'series data') 12
+(u'time series data', u'data mining') 12
+(u'series data', u'data mining') 12
+(u'mining algorithm', u'data mining') 12
+(u'text mining', u'data set') 12
+(u'text mining', u'data mining') 12
+(u'itemset mining', u'pattern mining') 12
+(u'generative model', u'data set') 12
+(u'data analysis', u'data mining') 12
+(u'data stream', u'data streams', u'data mining') 12
+(u'original data', u'data set') 12
+(u'proposed algorithm', u'data set') 12
+(u'real data', u'synthetic data', u'data set') 12
+(u'real data', u'data mining') 12
+(u'em algorithm', u'data sets') 12
+(u'model parameters', u'data sets') 12
+(u'model parameters', u'data mining') 12
+(u'unlabeled data', u'labeled data', u'training data') 12
+(u'learning algorithm', u'data sets', u'data set') 12
+(u'proposed method', u'training data') 12
+(u'clustering algorithm', u'data points') 12
+(u'spatial data',) 11
+(u'semantic data',) 11
+(u'social data',) 11
+(u'data processing',) 11
+(u'dataset size',) 11
+(u'application level',) 11
+(u'relevance model',) 11
+(u'data miningsession',) 11
+(u'dblp dataset',) 11
+(u'classification task',) 11
+(u'latent factor model', u'factor model') 11
+(u'latent factor model',) 11
+(u'means algorithm',) 11
+(u'cost model',) 11
+(u'data quality',) 11
+(u'dual problem',) 11
+(u'space model',) 11
+(u'benchmark data',) 11
+(u'private data',) 11
+(u'mining process', u'data mining') 11
+(u'synthetic data sets', u'data set', u'synthetic data', u'data sets') 11
+(u'synthetic data sets', u'data set', u'synthetic data') 11
+(u'synthetic data sets', u'data set', u'data sets') 11
+(u'synthetic data sets', u'data set') 11
+(u'frequent pattern mining', u'data mining', u'pattern mining') 11
+(u'frequent pattern mining', u'data mining') 11
+(u'mining frequent', u'pattern mining') 11
+(u'itemset mining', u'pattern mining', u'data mining') 11
+(u'linked data', u'data sources') 11
+(u'data records', u'data mining') 11
+(u'real data', u'synthetic data', u'data sets', u'data set') 11
+(u'real data', u'synthetic data', u'data sets') 11
+(u'model parameters', u'training data') 11
+(u'unlabeled data', u'data sets', u'data set') 11
+(u'test data', u'training data', u'data set') 11
+(u'test data', u'training data', u'data mining') 11
+(u'labeled data', u'data sets', u'data set') 11
+(u'clustering algorithm', u'data sets', u'data mining') 11
+(u'clustering algorithm', u'data set', u'data mining') 11
+(u'synthetic data', u'training data') 11
+(u'optimization problem', u'data set', u'data mining') 11
+(u'training data', u'data sets', u'data set', u'data mining') 11
+(u'management system',) 10
+(u'clustering process',) 10
+(u'traffic data',) 10
+(u'evaluation set',) 10
+(u'tree algorithm',) 10
+(u'data management',) 10
+(u'programming model',) 10
+(u'detection method',) 10
+(u'uncertain data',) 10
+(u'data instances',) 10
+(u'usage mining',) 10
+(u'clustering problem',) 10
+(u'graph database',) 10
+(u'domain data',) 10
+(u'scale data',) 10
+(u'sequential pattern mining', u'pattern mining') 10
+(u'sequential pattern mining',) 10
+(u'data clustering',) 10
+(u'microarray data',) 10
+(u'efficient algorithm',) 10
+(u'synthetic dataset',) 10
+(u'data item', u'data items') 10
+(u'data structures', u'data structure') 10
+(u'mining tasks', u'data mining') 10
+(u'ranking model', u'training data') 10
+(u'markov model', u'training data') 10
+(u'testing data', u'training data') 10
+(u'lda model', u'topic model') 10
+(u'real world data', u'data sets', u'world data') 10
+(u'real world data', u'data sets') 10
+(u'real world data', u'data set', u'world data') 10
+(u'real world data', u'data set') 10
+(u'world data', u'data sets') 10
+(u'world data', u'data set') 10
+(u'mining frequent', u'pattern mining', u'data mining') 10
+(u'rule mining', u'data set') 10
+(u'data analysis', u'data set') 10
+(u'original data', u'data sets', u'data set') 10
+(u'data sources', u'data mining') 10
+(u'pattern mining', u'data set') 10
+(u'unlabeled data', u'labeled data', u'data sets') 10
+(u'unlabeled data', u'data points') 10
+(u'test data', u'labeled data') 10
+(u'topic model', u'training data') 10
+(u'topic model', u'data sets') 10
+Number of patterns: 408
+-------- One-to-Many Association Rules --------
+data mining --> (u'transaction database', u'itemset mining') 0.00133725595079 1.0
+data mining --> (u'data miner',) 0.00160470714095 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'preserving data') 0.00240706071142 1.0
+data mining --> (u'privacy preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+data mining --> (u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+data mining --> (u'itemset mining', u'data sets', u'data set') 0.00133725595079 1.0
+data mining --> (u'itemset mining', u'data sets', u'data set') 0.00133725595079 1.0
+data mining --> (u'itemset mining', u'data sets') 0.00133725595079 1.0
+data mining --> (u'itemset mining', u'data set') 0.00160470714095 1.0
+data points --> (u'data point', u'data sets', u'data set', u'data mining') 0.00133725595079 1.0
+data points --> (u'data point', u'data sets', u'data mining') 0.00133725595079 1.0
+data points --> (u'data point', u'data set', u'data mining') 0.00133725595079 1.0
+data set --> (u'classification problem', u'data sets') 0.00160470714095 1.0
+data set --> (u'training data set', u'training data', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'training data set', u'training data', u'data mining') 0.00160470714095 1.0
+data set --> (u'training data set', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'training data set', u'data mining') 0.00160470714095 1.0
+data set --> (u'classification model', u'data sets') 0.00133725595079 1.0
+data set --> (u'itemset mining', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'itemset mining', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'itemset mining', u'data sets') 0.00133725595079 1.0
+data set --> (u'large data', u'data points', u'data mining') 0.00133725595079 1.0
+data set --> (u'data point', u'mixture model') 0.00133725595079 1.0
+data set --> (u'data point', u'data points', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'data point', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'mixture model', u'synthetic data') 0.00133725595079 1.0
+data set --> (u'mixture model', u'data points', u'data sets') 0.00133725595079 1.0
+data set --> (u'mixture model', u'training data', u'data sets') 0.00160470714095 1.0
+data set --> (u'mixture model', u'data sets', u'data mining') 0.0018721583311 1.0
+data set --> (u'mixture model', u'data sets', u'data mining') 0.0018721583311 1.0
+data set --> (u'mixture model', u'data sets') 0.00401176785237 1.0
+data set --> (u'real data', u'synthetic data', u'data sets', u'data mining') 0.00160470714095 1.0
+data set --> (u'real data', u'synthetic data', u'data mining') 0.00160470714095 1.0
+data set --> (u'pattern mining', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'pattern mining', u'data sets', u'data mining') 0.00133725595079 1.0
+data set --> (u'clustering algorithm', u'data points', u'data sets') 0.00133725595079 1.0
+data set --> (u'synthetic data', u'data sets', u'data mining') 0.00427921904252 0.941176470588
+data set --> (u'optimization problem', u'data sets', u'data mining') 0.00240706071142 1.0
+data set --> (u'optimization problem', u'data sets', u'data mining') 0.00240706071142 1.0
+data set --> (u'data points', u'data sets', u'data mining') 0.00427921904252 0.941176470588
+data sets --> (u'large data sets', u'large data', u'data set', u'data mining') 0.00133725595079 1.0
+data sets --> (u'large data sets', u'large data', u'data mining') 0.00160470714095 1.0
+data sets --> (u'large data sets', u'data set', u'data mining') 0.00133725595079 1.0
+data sets --> (u'large data sets', u'data mining') 0.00160470714095 1.0
+data sets --> (u'large data', u'clustering algorithm') 0.00133725595079 1.0
+data sets --> (u'data point', u'data points', u'data set', u'data mining') 0.00133725595079 1.0
+data sets --> (u'data point', u'data set', u'data mining') 0.00133725595079 1.0
+data sets --> (u'mixture model', u'training data', u'data set') 0.00160470714095 1.0
+data sets --> (u'real data', u'synthetic data', u'data set', u'data mining') 0.00160470714095 1.0
+data sets --> (u'real data', u'synthetic data', u'data mining') 0.00160470714095 1.0
+data sets --> (u'pattern mining', u'data set', u'data mining') 0.00133725595079 1.0
+data sets --> (u'pattern mining', u'data set', u'data mining') 0.00133725595079 1.0
+dimensional data --> (u'high dimensional data', u'data mining') 0.0018721583311 1.0
+expression data --> (u'gene expression data', u'data mining') 0.00160470714095 1.0
+gene expression data --> (u'expression data', u'data mining') 0.00160470714095 1.0
+large data --> (u'large data sets', u'data sets', u'data set', u'data mining') 0.00133725595079 1.0
+large data --> (u'large data sets', u'data sets', u'data mining') 0.00160470714095 1.0
+large data --> (u'large data sets', u'data set', u'data mining') 0.00133725595079 1.0
+large data --> (u'large data sets', u'data mining') 0.00160470714095 1.0
+media data --> (u'social media data', u'data mining') 0.00133725595079 1.0
+multi task --> (u'multi task learning', u'task learning', u'training data') 0.00133725595079 1.0
+multi task --> (u'multi task learning', u'task learning', u'data sets') 0.00133725595079 1.0
+multi task --> (u'multi task learning', u'task learning', u'data set') 0.00160470714095 1.0
+multi task --> (u'multi task learning', u'training data') 0.00133725595079 1.0
+multi task --> (u'multi task learning', u'data sets') 0.00133725595079 1.0
+multi task --> (u'multi task learning', u'data set') 0.00160470714095 1.0
+multi task --> (u'task learning', u'training data') 0.00133725595079 1.0
+multi task --> (u'task learning', u'data sets') 0.00133725595079 1.0
+multi task --> (u'task learning', u'data set') 0.0018721583311 1.0
+multi task learning --> (u'task learning', u'multi task', u'training data') 0.00133725595079 1.0
+multi task learning --> (u'task learning', u'multi task', u'data sets') 0.00133725595079 1.0
+multi task learning --> (u'task learning', u'training data') 0.00133725595079 1.0
+multi task learning --> (u'task learning', u'data sets') 0.00133725595079 1.0
+pattern mining --> (u'frequent pattern mining', u'data set') 0.00133725595079 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'preserving data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data mining',) 0.00240706071142 1.0
+preserving data --> (u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+preserving data --> (u'preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'preserving data mining', u'data mining') 0.00240706071142 1.0
+preserving data --> (u'preserving data mining',) 0.00240706071142 1.0
+preserving data --> (u'privacy preserving data', u'original data', u'data mining') 0.00160470714095 1.0
+preserving data --> (u'privacy preserving data', u'data mining') 0.00374431666221 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'preserving data') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+preserving data mining --> (u'privacy preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'preserving data') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'privacy preserving data mining',) 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining', u'data mining') 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data mining',) 0.00240706071142 1.0
+privacy preserving data --> (u'preserving data', u'original data', u'data mining') 0.00160470714095 1.0
+privacy preserving data --> (u'preserving data', u'data mining') 0.00374431666221 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data', u'privacy preserving data') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'preserving data') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'privacy preserving data', u'data mining') 0.00240706071142 1.0
+privacy preserving data mining --> (u'preserving data mining', u'privacy preserving data') 0.00240706071142 1.0
+rule mining --> (u'association rule mining', u'data set') 0.00160470714095 1.0
+series data --> (u'time series data', u'data mining') 0.00320941428189 1.0
+social media data --> (u'media data', u'data mining') 0.00133725595079 1.0
+task learning --> (u'multi task learning', u'multi task', u'training data') 0.00133725595079 1.0
+task learning --> (u'multi task learning', u'multi task', u'data sets') 0.00133725595079 1.0
+task learning --> (u'multi task learning', u'multi task', u'data set') 0.00160470714095 1.0
+task learning --> (u'multi task learning', u'training data') 0.00133725595079 1.0
+task learning --> (u'multi task learning', u'data sets') 0.00133725595079 1.0
+task learning --> (u'multi task learning', u'data set') 0.00160470714095 1.0
+time series data --> (u'series data', u'data mining') 0.00320941428189 1.0
+training data --> (u'training data set', u'data sets', u'data set', u'data mining') 0.00133725595079 1.0
+training data --> (u'training data set', u'data sets', u'data mining') 0.00133725595079 1.0
+training data --> (u'training data set', u'data set', u'data mining') 0.00160470714095 1.0
+training data --> (u'training data set', u'data mining') 0.00160470714095 1.0
+unlabeled data --> (u'learning framework', u'labeled data') 0.00133725595079 1.0
+Number of rules: 494
