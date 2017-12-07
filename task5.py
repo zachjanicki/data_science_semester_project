@@ -9,15 +9,16 @@ def extract_data(db):
     problems = []
     methods = []
     datasets = []
+    counter = 0
     for entry in output:
-        if entry not in transactions:
+        counter += 1
+        if entry[0] not in transactions:
             transactions[entry[0]] = []
             for i in range(0, int(entry[2])):
                 transactions[entry[0]].append(entry[1])
         else:
             for i in range(0, int(entry[2])):
                 transactions[entry[0]].append(entry[1])
-        
         if entry[3] == 'PROBLEM':
             problems.append(entry[1])
         elif entry[3] == 'METHOD':
@@ -25,9 +26,14 @@ def extract_data(db):
         elif entry[3] == 'DATASET':
             datasets.append(entry[1])
 
+    print counter
+
     list_tran = []
     for t in transactions:
         list_tran.append(transactions[t])
+    counter = 0
+    
+
     return list_tran, problems, methods, datasets
 
 def generate_associations(transactions, min_sup):
@@ -38,7 +44,7 @@ def generate_associations(transactions, min_sup):
         print pattern,support
     print 'Number of patterns:',len(apriori_patterns)
 
-    rules = apriori(transactions,target='r',supp=-2,conf=70,report='sc')
+    rules = apriori(transactions,target='r',supp=-10,conf=70,report='sc')
     print '-------- One-to-Many Association Rules --------'
     for (ruleleft,ruleright,support,confidence) in sorted(rules,key=lambda x:x[0]):
         print ruleleft,'-->',ruleright,support,confidence
