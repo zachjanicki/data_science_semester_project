@@ -4,7 +4,7 @@
 import sqlite3
 
 n_type = 4
-s_method = 'method algorithm model approach framework process scheme implementation procedure strategy architecture'
+s_method = 'method algorithm model approach framework process scheme implementation procedure strategy architecture mining'
 s_problem = 'problem technique process system application task evaluation tool paradigm benchmark software'
 s_dataset = 'data dataset database'
 s_metric = 'value score measure metric function parameter space'

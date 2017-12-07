@@ -82,6 +82,9 @@ def clean_stopwords(ngram_dict, n):
 	
 	
 def insert_term(db, paper_id, term, n, count, abbr=0):
+	for letter in term:
+		if ord(letter) > 128:
+			return
 	command = 'INSERT INTO Entities VALUES ("{}", "{}", {}, {}, "", {})'.format(paper_id, term, str(n), str(count), str(abbr))
 	db.execute(command)	
 
@@ -111,7 +114,7 @@ def populate_ngrams(db, minimum_support, max_n_gram):
 		papers_affected += 1
 		sys.stdout.write("\r%d\t papers affected" % papers_affected)
 		sys.stdout.flush()
-		if papers_affected == 100:
+		if papers_affected == 5000:
 			break
 		
 	return terms_inserted, papers_affected
